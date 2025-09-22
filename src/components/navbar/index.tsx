@@ -7,8 +7,10 @@ import { usePathname, useSearchParams } from 'next/navigation';
 import React from 'react';
 import { api } from '../../../convex/_generated/api';
 import { Id } from '../../../convex/_generated/dataModel';
-import { Avatar, AvatarFallback } from '../ui/avatar';
+import { useAppSelector } from '../../redux/store';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Button } from '../ui/button';
+import CreateProject from '../buttons/project/create-project';
 
 type TabProps = {
   lable: string;
@@ -21,6 +23,8 @@ const Navbar = () => {
   const projectId = params.get('project');
 
   const pathname = usePathname();
+
+  const me = useAppSelector((state) => state.profile);
 
   const tabs: TabProps[] = [
     {
@@ -47,8 +51,7 @@ const Navbar = () => {
     <div className="grid grid-cols-2 lg:grid-cols-3 p-6 fixed top-0 left-0 right-0 z-50">
       <div className="flex items-center gap-4">
         <Link
-          // href={`/dashboard/${me.name}`}
-          href={`/dashboard/`}
+          href={`/dashboard/${me.name}`}
           className="w-8 h-8 rounded-full border-3 border-white bg-black flex items-center justify-center"
         >
           <div className="w-4 h-4 rounded-full bg-white"></div>
@@ -96,13 +99,13 @@ const Navbar = () => {
           <CircleQuestionMark className="size-5 text-white" />
         </Button>
         <Avatar className="size-12 ml-2">
-          {/* <AvatarImage src={image} /> */}
+          <AvatarImage src={me.image} />
           <AvatarFallback>
             <User className="size-5 text-black" />
           </AvatarFallback>
         </Avatar>
-        {/* {hasCanvas && <AutoSave />}
-        {!hasCanvas && !hasStyleGuide && <CreateProject />} */}
+        {/* {hasCanvas && <AutoSave />} */}
+        {!hasCanvas && !hasStyleGuide && <CreateProject />}
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { useAuth } from '@/hooks/user-auth';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import Google from '../../../components/oauth/google';
+import Google from '../../../components/buttons/oauth/google';
 
 export default function LoginPage() {
   const { signInForm, handleSignIn, isLoading } = useAuth();

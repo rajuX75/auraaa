@@ -3,7 +3,10 @@ import { ThemeProvider } from '@/providers/theme';
 import { ConvexAuthNextjsServerProvider } from '@convex-dev/auth/nextjs/server';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { ProfileQuery } from '../convex/query.config';
 import { ConvexClientProvider } from '../providers/ConvexClientProvider';
+import ReduxProvider from '../redux/provider';
+import { ConvexUserRaw, normalizeProfile } from '../types/user';
 import './globals.css';
 
 const geistSans = Geist({
@@ -24,11 +27,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const rawProfile = await ProfileQuery();
+  const profile = normalizeProfile(rawProfile._valueJSON as unknown as ConvexUserRaw | null);
   return (
     <ConvexAuthNextjsServerProvider>
       <html lang="en" suppressHydrationWarning>
@@ -40,8 +45,10 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              {children}
-              <Toaster />
+              <ReduxProvider preloadedState={{ profile }}>
+                {children}
+                <Toaster />
+              </ReduxProvider>
             </ThemeProvider>
           </ConvexClientProvider>
         </body>
