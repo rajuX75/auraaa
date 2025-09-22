@@ -1,12 +1,12 @@
 'use client';
 
+import Google from '@/components/buttons/oauth/google';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useAuth } from '@/hooks/user-auth';
 import { Loader2 } from 'lucide-react';
 import Link from 'next/link';
-import Google from '../../../components/buttons/oauth/google';
 
 export default function LoginPage() {
   const { signInForm, handleSignIn, isLoading } = useAuth();

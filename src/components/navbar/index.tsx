@@ -8,9 +8,9 @@ import React from 'react';
 import { api } from '../../../convex/_generated/api';
 import { Id } from '../../../convex/_generated/dataModel';
 import { useAppSelector } from '../../redux/store';
+import CreateProject from '../buttons/project/create-project';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Button } from '../ui/button';
-import CreateProject from '../buttons/project/create-project';
 
 type TabProps = {
   lable: string;
@@ -29,12 +29,12 @@ const Navbar = () => {
   const tabs: TabProps[] = [
     {
       lable: 'Canvas',
-      href: `/dashboard//canvas?project=${projectId}`,
+      href: `/dashboard/${me.name}/canvas?project=${projectId}`,
       icon: <Hash className="h-4 w-4" />,
     },
     {
       lable: 'Style Guide',
-      href: `/dashboard//style-guide?project=${projectId}`,
+      href: `/dashboard/${me.name}/style-guide?project=${projectId}`,
       icon: <LayoutTemplate className="h-4 w-4" />,
     },
   ];
