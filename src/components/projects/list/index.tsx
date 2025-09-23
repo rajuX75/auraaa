@@ -2,6 +2,7 @@
 
 import { useProjectCreation } from '@/hooks/use-project-creation';
 import { useAppSelector } from '@/redux/store';
+import { formatDistanceToNow } from 'date-fns';
 import { Plus } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -55,12 +56,28 @@ const ProjectsList = () => {
               <div className="space-y-3">
                 <div className="aspect-[4/3] rounded-lg overflow-hidden bg-muted">
                   {project.thumbnail ? (
-                    <Image src={project.thumbnail} alt={project.name} width={300} height={200} />
+                    <Image
+                      src={project.thumbnail}
+                      alt={project.name}
+                      width={300}
+                      height={200}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
                       <Plus className="w-8 h-8 text-gray-400" />
                     </div>
                   )}
+                </div>
+                <div className="space-y-1">
+                  <h3 className="font-medium text-foreground text-sm truncate group-hover:text-primary transition-colors">
+                    {project.name}
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    {formatDistanceToNow(new Date(project.lastModified), {
+                      addSuffix: true,
+                    })}
+                  </p>
                 </div>
               </div>
             </Link>

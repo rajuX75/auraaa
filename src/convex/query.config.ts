@@ -65,3 +65,12 @@ export const ProjectQuery = async () => {
   );
   return { projects, profile };
 };
+
+
+export const StyleGuideQuery = async (projectId: string) => {
+  const styleGuide = await preloadQuery(
+    api.projects.getProjectStyleGuide,
+    { projectId: projectId as Id<'projects'> },
+    { token: await convexAuthNextjsToken() }
+  );
+};
