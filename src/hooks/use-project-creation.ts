@@ -16,7 +16,7 @@ import { Id } from '../../convex/_generated/dataModel';
 export const useProjectCreation = () => {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.profile);
-  const projectState = useAppSelector((state) => state.project);
+  const projectState = useAppSelector((state) => state.projects);
   const shapesState = useAppSelector((state) => state.shapes);
 
   const createProject = async (name?: string) => {

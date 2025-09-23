@@ -56,12 +56,12 @@ export const ProjectQuery = async () => {
   const rawProfile = await ProfileQuery();
   const profile = normalizeProfile(rawProfile._valueJSON as unknown as ConvexUserRaw | null);
   if (!profile?.id) {
-    return { project: null, profile: null };
+    return { projects: null, profile: null };
   }
-  const project = await preloadQuery(
+  const projects = await preloadQuery(
     api.projects.getUserProjects,
     { userId: profile.id as Id<'users'> },
     { token: await convexAuthNextjsToken() }
   );
-  return { project, profile };
+  return { projects, profile };
 };
