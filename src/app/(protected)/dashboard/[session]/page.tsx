@@ -3,7 +3,7 @@ import ProjectsProvider from '@/components/projects/list/provider';
 import { ProjectQuery } from '@/convex/query.config';
 
 const Page = async () => {
-  const { project, profile } = await ProjectQuery();
+  const { projects, profile } = await ProjectQuery();
 
   if (!profile) {
     return (
@@ -16,7 +16,7 @@ const Page = async () => {
     );
   }
   return (
-    <ProjectsProvider initialProjects={project}>
+    <ProjectsProvider initialProjects={projects}>
       <div className="container mx-auto py-36 px-4">
         <ProjectsList />
       </div>
