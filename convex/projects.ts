@@ -89,14 +89,14 @@ export const getUserProjects = query({
 
     const projects = allProjects.slice(0, limit);
 
-    return projects.map((projects) => ({
-      _id: projects._id,
-      name: projects.name,
-      projectsNumber: projects.projectNumber,
-      thumbnail: projects.thumbnail,
-      lastModified: projects.lastModified,
-      createdAt: projects.createdAt,
-      isPublic: projects.isPublic,
+    return projects.map((project) => ({
+      _id: project._id,
+      name: project.name,
+      projectNumber: project.projectNumber,
+      thumbnail: project.thumbnail,
+      lastModified: project.lastModified,
+      createdAt: project.createdAt,
+      isPublic: project.isPublic,
     }));
   },
 });

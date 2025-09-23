@@ -58,10 +58,10 @@ export const ProjectQuery = async () => {
   if (!profile?.id) {
     return { project: null, profile: null };
   }
-  const projects = await preloadQuery(
+  const project = await preloadQuery(
     api.projects.getUserProjects,
     { userId: profile.id as Id<'users'> },
     { token: await convexAuthNextjsToken() }
   );
-  return { projects, profile };
+  return { project, profile };
 };
