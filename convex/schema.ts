@@ -58,7 +58,9 @@ const schema = defineSchema({
     tags: v.optional(v.array(v.string())),
     projectNumber: v.number(),
     updatedAt: v.number(),
-  }).index('by_userId', ['userId']),
+  })
+    .index('by_userId', ['userId'])
+    .index('by_userId_lastModified', ['userId', 'lastModified']),
 
   project_counters: defineTable({
     userId: v.id('users'),
