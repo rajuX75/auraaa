@@ -73,4 +73,14 @@ export const StyleGuideQuery = async (projectId: string) => {
     { projectId: projectId as Id<'projects'> },
     { token: await convexAuthNextjsToken() }
   );
+  return { styleGuide };
+};
+
+export const MoodBoardImagesQuery = async (projectId: string) => {
+  const images = await preloadQuery(
+    api.moodboard.getMoodBoardImages,
+    { projectId: projectId as Id<'projects'> },
+    { token: await convexAuthNextjsToken() }
+  );
+  return { images };
 };

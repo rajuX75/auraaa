@@ -9,17 +9,17 @@ type Props = {
 const tabs = [
   {
     value: 'colours',
-    lable: 'Colours',
+    label: 'Colours',
     icon: Hash,
   },
   {
     value: 'typography',
-    lable: 'Typography',
+    label: 'Typography',
     icon: Type,
   },
   {
     value: 'moodboard',
-    lable: 'Moodboard',
+    label: 'Moodboard',
     icon: LayoutIcon,
   },
 ] as const;
@@ -48,7 +48,7 @@ const Layout = ({ children }: Props) => {
                     className="flex items-center gap-2 rounded-xl data-[state=active]:bg-white/[0.15] data-[state=active]:backdrop-blur-xl data-[state=active]:border data-[state=active]:border-white/[0.2] transition-all duration-200 text-xs sm:text-sm"
                   >
                     <Icon className="w-4 h-4" />
-                    <span className="hidden sm:inline">{tab.lable}</span>
+                    <span className="hidden sm:inline">{tab.label}</span>
                     <span className=" sm:hidden">{tab.value}</span>
                   </TabsTrigger>
                 );
