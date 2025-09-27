@@ -71,7 +71,7 @@ export const useMoodBoard = (guideImages: MoodBoardImage[]) => {
     if (guideImages && guideImages.length > 0) {
       const serverImages: MoodBoardImage[] = guideImages.map((img: any) => ({
         id: img.id,
-        preview: img.preview,
+        preview: img.url,
         storageId: img.storageId,
         uploaded: true,
         uploading: false,
@@ -88,7 +88,10 @@ export const useMoodBoard = (guideImages: MoodBoardImage[]) => {
             (clientImg) => clientImg.storageId === serverImg.storageId
           );
           if (clientIndex !== -1) {
-            if (mergedImages[clientIndex].preview.startsWith('blob:')) {
+            if (
+              mergedImages[clientIndex].preview &&
+              mergedImages[clientIndex].preview.startsWith('blob:')
+            ) {
               URL.revokeObjectURL(mergedImages[clientIndex].preview);
             }
             mergedImages[clientIndex] = serverImg;
